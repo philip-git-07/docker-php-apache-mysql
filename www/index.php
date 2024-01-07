@@ -15,7 +15,7 @@
 	<?php echo "<h3>This is PHP demo</h3>"; ?>
 
     <?php
-    $conn = mysqli_connect('db', 'philip', 'philip123', "myDb");
+    $conn = mysqli_connect('php-app-rds.cd22cmyu0ea0.us-east-2.rds.amazonaws.com', 'philip', 'philip123', "php-app-rds");
     $query = 'SELECT * From Person';
     $result = mysqli_query($conn, $query);
     echo '<table class="table table-striped">';
