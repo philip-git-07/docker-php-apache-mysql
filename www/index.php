@@ -5,7 +5,7 @@ $password = "Philip123"; // Replace with your MySQL password
 $dbname = "php_rds"; // Replace with your MySQL database name
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($php-app-rds.cd22cmyu0ea0.us-east-2.rds.amazonaws.com, $PHILIP, $Philip123, $php_rds);
 
 // Check connection
 if ($conn->connect_error) {
