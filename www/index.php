@@ -1,50 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Philip Thomas | BitCot Task</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-</head>
-<body>
-    <div class="container">
-        <?php echo "<h1>Hi! I'm Philip</h1>"; ?>
-        <?php echo "<h3>This is PHP demo</h3>"; ?>
+<?php
+$servername = "your_mysql_server"; // Replace with your MySQL server name
+$username = "your_mysql_username"; // Replace with your MySQL username
+$password = "your_mysql_password"; // Replace with your MySQL password
+$dbname = "your_database_name"; // Replace with your MySQL database name
 
-        <?php
-        $conn = mysqli_connect('php-app-rds.cd22cmyu0ea0.us-east-2.rds.amazonaws.com', 'PHILIP', 'Philip123', "php-app-rds");
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-        // Check connection
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-        $query = 'SELECT * FROM Person';
-        $result = mysqli_query($conn, $query);
+// Insert data into 'users' table (assuming 'users' table exists with columns 'name' and 'email')
+$name = "John Doe";
+$email = "john@example.com";
+$sql = "INSERT INTO users (name, email) VALUES ('$name', '$email')";
 
-        if (!$result) {
-            die("Query failed: " . mysqli_error($conn));
-        }
+if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
 
-        echo '<table class="table table-striped">';
-        echo '<thead><tr><th></th><th>id</th><th>name</th></tr></thead>';
-        while ($value = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            echo '<tr>';
-            echo '<td><a href="#"><span class="glyphicon glyphicon-search"></span></a></td>';
-            foreach ($value as $element) {
-                echo '<td>' . $element . '</td>';
-            }
-            echo '</tr>';
-        }
-        echo '</table>';
-
-        // Release result set
-        mysqli_free_result($result);
-
-        // Close connection
-        mysqli_close($conn);
-        ?>
-    </div>
-</body>
-</html>
+$conn->close();
+?>
