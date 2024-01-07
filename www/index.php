@@ -12,16 +12,61 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Insert data into 'users' table (assuming 'users' table exists with columns 'name' and 'email')
-$name = "John Doe";
-$email = "john@example.com";
-$sql = "INSERT INTO users (name, email) VALUES ('$name', '$email')";
+// Retrieve data from the 'users' table
+$sql = "SELECT id, name AS username, email FROM users";
+$result = $conn->query($sql);
 
-if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
+?>
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Information</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h2>User Information</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Email</th>
+    </tr>
+
+    <?php
+    if ($result->num_rows > 0) {
+        // Output data of each row
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . $row["id"] . "</td>";
+            echo "<td>" . $row["username"] . "</td>";
+            echo "<td>" . $row["email"] . "</td>";
+            echo "</tr>";
+        }
+    } else {
+        echo "<tr><td colspan='3'>No records found</td></tr>";
+    }
+    ?>
+</table>
+
+</body>
+</html>
+
+<?php
+// Close the database connection
 $conn->close();
 ?>
