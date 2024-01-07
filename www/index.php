@@ -1,37 +1,21 @@
-<?php
-$servername = "php-app-rds.cd22cmyu0ea0.us-east-2.rds.amazonaws.com"; // Replace with your MySQL server name
-$username = "PHILIP"; // Replace with your MySQL username
-$password = "Philip123"; // Replace with your MySQL password
-$dbname = "php_rds"; // Replace with your MySQL database name
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Retrieve data from the 'users' table
-$sql = "SELECT id, name AS username, email FROM users";
-$result = $conn->query($sql);
-
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>User Information</title>
+    <title>User Data</title>
     <style>
         table {
+            font-family: Arial, sans-serif;
             border-collapse: collapse;
             width: 50%;
+            margin: 20px auto;
         }
+
         th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
+            border: 1px solid #dddddd;
             text-align: left;
+            padding: 8px;
         }
+
         th {
             background-color: #f2f2f2;
         }
@@ -39,34 +23,34 @@ $result = $conn->query($sql);
 </head>
 <body>
 
-<h2>User Information</h2>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Username</th>
-        <th>Email</th>
-    </tr>
+    <h2>User Data</h2>
 
-    <?php
-    if ($result->num_rows > 0) {
-        // Output data of each row
-        while ($row = $result->fetch_assoc()) {
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+        </tr>
+
+        <?php
+        $data = [
+            ['id' => 1, 'username' => 'Alice', 'email' => 'alice@example.com'],
+            ['id' => 2, 'username' => 'Bob', 'email' => 'bob@example.com'],
+            ['id' => 3, 'username' => 'Charlie', 'email' => 'charlie@example.com'],
+            ['id' => 4, 'username' => 'David', 'email' => 'david@example.com'],
+            // Add more data as needed...
+        ];
+
+        foreach ($data as $row) {
             echo "<tr>";
-            echo "<td>" . $row["id"] . "</td>";
-            echo "<td>" . $row["username"] . "</td>";
-            echo "<td>" . $row["email"] . "</td>";
+            echo "<td>" . $row['id'] . "</td>";
+            echo "<td>" . $row['username'] . "</td>";
+            echo "<td>" . $row['email'] . "</td>";
             echo "</tr>";
         }
-    } else {
-        echo "<tr><td colspan='3'>No records found</td></tr>";
-    }
-    ?>
-</table>
+        ?>
+
+    </table>
 
 </body>
 </html>
-
-<?php
-// Close the database connection
-$conn->close();
-?>
