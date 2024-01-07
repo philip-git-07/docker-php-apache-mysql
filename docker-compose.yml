@@ -4,7 +4,7 @@ services:
     www:
         build: .
         ports:
-            - "8081:80"
+            - "80:80"
         volumes:
             - ./www:/var/www/html/
         links:
@@ -16,10 +16,10 @@ services:
         ports:
             - "3306:3306"
         environment:
-            MYSQL_DATABASE: php_rds
-            MYSQL_USER: PHILIP
-            MYSQL_PASSWORD: Philip123
-            MYSQL_ROOT_PASSWORD: philip
+            MYSQL_DATABASE: myDb
+            MYSQL_USER: ranjit
+            MYSQL_PASSWORD: ranjit
+            MYSQL_ROOT_PASSWORD: ranjit
         volumes:
             - ./dump:/docker-entrypoint-initdb.d
             - persistent:/var/lib/mysql
@@ -30,11 +30,10 @@ services:
         links:
             - db:db
         ports:
-            - 8082:80
+            - 82:80
         environment:
-            MYSQL_USER: philip
-            MYSQL_PASSWORD: philip123
-            MYSQL_ROOT_PASSWORD: philip
+            MYSQL_USER: ranjit
+            MYSQL_PASSWORD: ranjit
+            MYSQL_ROOT_PASSWORD: ranjit
 volumes:
     persistent:
-
