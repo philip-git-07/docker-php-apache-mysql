@@ -1,56 +1,37 @@
-<!DOCTYPE html>
 <html>
-<head>
-    <title>User Data</title>
-    <style>
-        table {
-            font-family: Arial, sans-serif;
-            border-collapse: collapse;
-            width: 50%;
-            margin: 20px auto;
-        }
+ <head>
+  <title>Ranjit Swain | Docker class</title>
 
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
+  <meta charset="utf-8">
 
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 </head>
 <body>
+    <div class="container">
+    <?php echo "<h1>Hi! I'm Ranjit</h1>"; ?>
+	<?php echo "<h3>This is Docker Compose Class!</h3>"; ?>
 
-    <h2>User Data</h2>
-
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Email</th>
-        </tr>
-
-        <?php
-        $data = [
-            ['id' => 1, 'username' => 'Alice', 'email' => 'alice@example.com'],
-            ['id' => 2, 'username' => 'Bob', 'email' => 'bob@example.com'],
-            ['id' => 3, 'username' => 'Charlie', 'email' => 'charlie@example.com'],
-            ['id' => 4, 'username' => 'David', 'email' => 'david@example.com'],
-            // Add more data as needed...
-        ];
-
-        foreach ($data as $row) {
-            echo "<tr>";
-            echo "<td>" . $row['id'] . "</td>";
-            echo "<td>" . $row['username'] . "</td>";
-            echo "<td>" . $row['email'] . "</td>";
-            echo "</tr>";
+    <?php
+    $conn = mysqli_connect('db', 'ranjit', 'ranjit', "myDb");
+    $query = 'SELECT * From Person';
+    $result = mysqli_query($conn, $query);
+    echo '<table class="table table-striped">';
+    echo '<thead><tr><th></th><th>id</th><th>name</th></tr></thead>';
+    while($value = $result->fetch_array(MYSQLI_ASSOC)){
+        echo '<tr>';
+        echo '<td><a href="#"><span class="glyphicon glyphicon-search"></span></a></td>';
+        foreach($value as $element){
+            echo '<td>' . $element . '</td>';
         }
-        ?>
-
-    </table>
-
+        echo '</tr>';
+    }
+    echo '</table>';
+    $result->close();
+    mysqli_close($conn);
+    ?>
+    </div>
 </body>
 </html>
