@@ -13,7 +13,7 @@
         <?php echo "<h3>This is PHP demo</h3>"; ?>
 
         <?php
-        $conn = mysqli_connect('php-app-rds.cd22cmyu0ea0.us-east-2.rds.amazonaws.com', 'PHILIP', 'Philip123', "myDb");
+        $conn = mysqli_connect('php-app-rds.cd22cmyu0ea0.us-east-2.rds.amazonaws.com', 'PHILIP', 'Philip123', "php-app-rds");
 
         // Check connection
         if (!$conn) {
