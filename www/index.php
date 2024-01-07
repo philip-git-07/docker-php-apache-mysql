@@ -1,6 +1,6 @@
 <html>
  <head>
-  <title>Ranjit Swain | Docker class</title>
+  <title>Philip Thomas | BitCot Task</title>
 
   <meta charset="utf-8">
 
