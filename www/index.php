@@ -1,8 +1,8 @@
 <?php
-$servername = "your_mysql_server"; // Replace with your MySQL server name
-$username = "your_mysql_username"; // Replace with your MySQL username
-$password = "your_mysql_password"; // Replace with your MySQL password
-$dbname = "your_database_name"; // Replace with your MySQL database name
+$servername = "php-app-rds.cd22cmyu0ea0.us-east-2.rds.amazonaws.com"; // Replace with your MySQL server name
+$username = "PHILIP"; // Replace with your MySQL username
+$password = "Philip123"; // Replace with your MySQL password
+$dbname = "php_rds"; // Replace with your MySQL database name
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
