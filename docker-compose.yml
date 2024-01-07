@@ -16,7 +16,7 @@ services:
         ports:
             - "3306:3306"
         environment:
-            MYSQL_DATABASE: myDb
+            MYSQL_DATABASE: php-app-rds
             MYSQL_USER: philip
             MYSQL_PASSWORD: philip123
             MYSQL_ROOT_PASSWORD: philip
