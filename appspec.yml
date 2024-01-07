@@ -1,0 +1,6 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /dist    # Replace '/dist' with the path to your application files
+    destination: /var/www/html    # Replace '/var/www/html' with the destination on your server
